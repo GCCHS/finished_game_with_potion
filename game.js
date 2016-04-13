@@ -68,8 +68,6 @@ function randomRange (min, max) {
     return Math.floor(Math.random() * (max + 1 - min)) + min;
 }
 
-
-
 function Player() {
     this.srcX = 0;
     this.srcY = 600;
@@ -79,8 +77,8 @@ function Player() {
     this.dHeight = this.height;
     this.drawX = 400;
     this.drawY = 300;
-    this.centerX = this.drawX + (this.width / 2);
-    this.centerY = this.drawY + (this.height / 2);
+    this.centerX = this.drawX + (this.dWidth / 2);
+    this.centerY = this.drawY + (this.dHeight / 2);
     this.speed = 2;
     this.isUpKey = false;
     this.isRightKey = false;
@@ -91,14 +89,14 @@ function Player() {
     var numBullets = 10;
     this.bullets = [];
     this.currentBullet = 0;
-    for (var i = 0; i < numBullets; i++) {
+    for (var i  = 0; i < numBullets; i++) {
         this.bullets[this.bullets.length] = new Bullet();
     }
 }
 
 Player.prototype.update = function () {
-    this.centerX = this.drawX + (this.width / 2);
-    this.centerY = this.drawY + (this.height / 2);
+    this.centerX = this.drawX + (this.dWidth / 2);
+    this.centerY = this.drawY + (this.dHeight / 2);
     this.checkDirection();
     this.checkShooting();
     this.updateAllBullets();
@@ -171,8 +169,8 @@ Player.prototype.checkTouchingPotion = function (newDrawX, newDrawY) {
 
 Player.prototype.checkObstacleCollide = function (newDrawX, newDrawY) {
     var obstacleCounter = 0,
-        newCenterX = newDrawX + (this.width / 2),
-        newCenterY = newDrawY + (this.height / 2);
+        newCenterX = newDrawX + (this.dWidth / 2),
+        newCenterY = newDrawY + (this.dHeight / 2);
     for (var i = 0; i < obstacles.length; i++) {
         if (obstacles[i].leftX < newCenterX && newCenterX < obstacles[i].rightX && obstacles[i].topY - 20 < newCenterY && newCenterY < obstacles[i].bottomY - 20) {
             obstacleCounter = 0;
